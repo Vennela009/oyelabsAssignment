@@ -4,7 +4,7 @@ const person = {
 };
 
 const student = {
-  name: "ravi:",
+  name: "ravi",
   email: "ravi11@yopmail.com",
 };
 
