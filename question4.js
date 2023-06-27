@@ -9,7 +9,7 @@ const student = {
 };
 
 const newObject = {
-  ...person,...student
+  ...person, ...student
 };
 
 console.log(newObject);
