@@ -1,9 +1,9 @@
-const dbConn = require('mysql');
+const mysql = require('mysql');
 //Making connection with database
-const pool = new Pool({
+const con = mysql.createConnection({
     user: 'mvenn',
     host: 'localhost',
-    database: 'node_sql',
+    database: 'mydb',
     password: 'dcm123',
     port: 5000,
 });
@@ -13,7 +13,7 @@ function addCustomer(phoneNumber, password) {
         validator(password) // First validate that password has special character or not
             .then(() => { return isPhoneNumberExist(phoneNumber); }) 
             .catch((e) => { console.log(e) });
-        pool.query("INSERT INTO Account(phone_number,password) values($1,$2)", [phone_number, password], (err, res) => {
+        con.query("INSERT INTO Account(phone_number,password) values($1,$2)", [phone_number, password], (err, res) => {
             if (err) {
                 reject(err);
             } else resolve("Your have successfully added!");
@@ -25,7 +25,7 @@ function addCustomer(phoneNumber, password) {
 
 function isPhoneNumberExist(phoneNumber) {
     return new Promise((resolve, reject) => {
-        pool.query("SELECT phone_number FROM Account where phone_number =$1 ", [phone_number], (err, res) => {
+        con.query("SELECT phone_number FROM Account where phone_number =$1 ", [phone_number], (err, res) => {
             if (err) {
                 reject(err);
             } else {
