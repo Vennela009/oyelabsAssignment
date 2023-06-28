@@ -15,6 +15,8 @@ con.connect(function(err){
       customers.name,
       GROUP_CONCAT(
         DISTINCT lower(student_subject.subjectName)
+        ORDER BY
+      student_subject.subjectName ASC
       ) AS subject
     FROM
     (
